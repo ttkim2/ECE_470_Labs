@@ -17,10 +17,10 @@ class JointAngles:
         self.position = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 # UR3e home position
-home = np.radians([120, -90, 90, -90, -90, 0])
+home = np.radians([185, -63, 76, -105, -88, 2])
 
 # Hanoi tower location 
-Q00 = [175.53*pi/180.0, -62.73*pi/180.0, 99.25*pi/180.0, -123.50*pi/180.0, -90.12*pi/180.0, 360*pi/180.0]
+Q00 = [175.53*pi/180.0, -62.73*pi/180.0, 99.25*pi/180.0, -123.50*pi/180.0, -90.12*pi/180.0, 0.0*pi/180.0]
 Q01 = [176.13*pi/180.0, -57.62*pi/180.0, 101.64*pi/180.0, -131.02*pi/180.0, -90.92*pi/180.0, 0.87*pi/180.0]
 Q02 = [176.45*pi/180.0, -51.94*pi/180.0, 103.30*pi/180.0, -138.03*pi/180.0, -91.07*pi/180.0, 0.87*pi/180.0]
 Q10 = [191.55*pi/180.0, -33.32*pi/180.0, 47.19*pi/180.0, -105.78*pi/180.0, -90.23*pi/180.0, 0.87*pi/180.0]
@@ -182,22 +182,25 @@ class UR3e(Node):
         error = 0
         self.move_arm(home)
         self.move_arm(Q[start_tower][start_height])
-        time.sleep(1.0)
+        time.sleep(0.5)
         self.set_io(0, 1.0)  # Turn on suction
 
-        rclpy.spin(self)
-        self.io_state_callback(self.io_state_sub)
-        if (self.analog_in_0_value < 0.5):
+        start_time = time.time()
+        while time.time() - start_time < 1:
+            rclpy.spin_once(self, timeout_sec=0.1)
+
+        if (self.analog_in_0_value < 2):
             error = 1
             print("Error: Suction cup did not pick up the block.")
+            self.set_io(0, 0.0)  # Turn off suction
             sys.exit()
 
-        time.sleep(1.0)
+        time.sleep(0.5)
         self.move_arm(home)
         self.move_arm(Q[end_tower][end_height])
-        time.sleep(1.0)
+        time.sleep(0.5)
         self.set_io(0, 0.0)  # Turn off suction
-        time.sleep(1.0)
+        time.sleep(0.5)
         return error
 
     ############### Your Code End Here ###############
