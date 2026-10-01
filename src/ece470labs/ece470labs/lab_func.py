@@ -24,7 +24,7 @@ y_0 = 0.150
 z_0 = 0.010
 
 # Offset of the end-effector frame in the gripper frame
-x_E = 0.535
+x_E = 0.0535
 z_E = 0.059
 
 def VectoSE3(S):
@@ -47,9 +47,9 @@ def VectoSE3(S):
 def Get_MS():
 	# =================== Your code starts here ====================#
 	# Fill in the correct values for S1~6, as well as the M matrix
-	x = L3 + L5 + L7
-	y = L2 - L4 + L6
-	z = L1
+	x = L3 + L5 + L7 - x_0 
+	y = L2 - L4 + L6 + L8 + y_0 + z_E
+	z = L1 + z_0 + x_E
 	
 	M = [[0.0, -1.0, 0.0, x],
 	      [0.0, 0.0, -1.0, y],
@@ -57,12 +57,34 @@ def Get_MS():
 	      [0.0, 0.0, 0.0, 1]]
 
 	S = np.zeros((6,6))
-	S[0] = [0, 0, 1, 0, 0, 0]
-	S[1] = [0, 1, 0, -L1, 0, 0]
-	S[2] = [0, 1, 0, -L1, 0, L3]
-	S[3] = [0, 1, 0, -L1, 0, L3 + L5]
-	S[4] = [1, 0, 0, 0, -L1, -L2 + L4 - L6]
-	S[5] = [0, 1, 0, -L1, 0, L3 + L5 + L7]
+	w = np.zeros((6,3))
+	q = np.zeros((6,3))
+	v = np.zeros((6,3))
+	# S[0] = [0, 0, 1, 0, 0, 0]
+	# S[1] = [0, 1, 0, -L1, 0, 0]
+	# S[2] = [0, 1, 0, -L1, 0, L3]
+	# S[3] = [0, 1, 0, -L1, 0, L3 + L5]
+	# S[4] = [1, 0, 0, 0, -L1, -L2 + L4 - L6]
+	# S[5] = [0, 1, 0, -L1, 0, L3 + L5 + L7]
+	w[0] = [0, 0, 1]
+	w[1] = [0, 1, 0]
+	w[2] = [0, 1, 0]
+	w[3] = [0, 1, 0]
+	w[4] = [1, 0, 0]
+	w[5] = [0, 1, 0]
+	
+	q[0] = [0, 0, L1]
+	q[1] = [0, L2, L1]
+	q[2] = [L3, L2, L1]
+	q[3] = [L3 + L5, L2 - L4, L1]
+	q[4] = [L3 + L5, L2 - L4 + L6, L1]
+	q[5] = [L3 + L5 + L7, L2 - L4 + L6, L1]
+
+	for i in range(6):
+		q[i] = q[i] + np.array([-x_0, y_0, z_0])
+		v[i] = np.cross(-w[i], q[i])
+		S[i] = np.append(w[i], v[i])
+
 	# ==============================================================#
 	return M, S
 
@@ -88,8 +110,9 @@ def lab_fk(theta1, theta2, theta3, theta4, theta5, theta6):
 		T = T @ expm(S_ * theta[i])
 	T = T @ M
 
-	# ==============================================================#
+	
 
+	# ==============================================================#
 	print(str(T) + "\n")
 
 	return_value[0] = theta1 + pi
