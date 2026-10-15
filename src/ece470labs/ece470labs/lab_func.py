@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import numpy as np
 from scipy.linalg import expm
-from math import pi
+from math import atan2, pi
 import math
 
 """
@@ -130,13 +130,38 @@ Function that calculates an elbow up Inverse Kinematic solution for the UR3
 """
 def lab_invk(xWgrip, yWgrip, zWgrip, yaw_WgripDegree):
 	# =================== Your code starts here ====================#
+	yaw = np.radians(yaw_WgripDegree)
+	x_cen = xWgrip - np.cos(yaw) * x_E + x_0
+	y_cen = yWgrip - np.sin(yaw) * x_E - y_0
+	z_cen = zWgrip - z_0
 	
-	theta1 = 0.0
-	theta2 = 0.0
-	theta3 = 0.0
-	theta4 = 0.0
-	theta5 = 0.0
-	theta6 = 0.0
+	arcsin_ = (L2 - L4 + L6) / np.sqrt(x_cen**2 + y_cen**2)
+
+	theta1 = np.arctan2(y_cen, x_cen) - np.arcsin(arcsin_)
+	theta6 = np.pi/2 + theta1 - yaw
+
+	translation_cen_to_base = np.array([
+		[np.cos(theta1), -np.sin(theta1), 0, x_cen],
+		[np.sin(theta1), np.cos(theta1)  , 0, y_cen],
+		[0,            0,               1,    z_cen],
+		[0,            0,               0,     1]
+		])
+	vec_cen_to_3end = np.array([-L7, -L6 - 0.027, L8 + z_E, 1])
+
+	end3 = vec_cen_to_3end @ translation_cen_to_base.T
+	
+	x3end = end3[0]
+	y3end = end3[1]
+	z3end = z_cen + L8 + z_E
+
+	horizontal_distance = np.sqrt(x3end**2 + y3end**2)
+	hypotenuse = np.sqrt(horizontal_distance**2 + (z3end - L1)**2)
+
+	theta2 = -(np.arctan2(z3end - L1, horizontal_distance) - np.arccos((L3**2 + hypotenuse**2 - L5**2) / (2 * L3 * hypotenuse)))
+	theta3 = np.pi - np.arccos((L3**2 + L5**2 - hypotenuse**2) / (2 * L3 * L5))
+
+	theta4 = theta2 - theta3
+	theta5 = -np.pi/2
 	
 	# ==============================================================#
 	return lab_fk(theta1, theta2, theta3, theta4, theta5, theta6)

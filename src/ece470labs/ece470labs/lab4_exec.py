@@ -36,8 +36,7 @@ class UR3e(Node):
         ############## Your Code Start Here ##############
         # TODO: define a ROS subscriber for gripper input message and corresponding callback function
         # ROS2 gripper input topic: /io_and_status_controller/io_states
-
-
+        self.io_state_sub = self.create_subscription(IOStates, '/io_and_status_controller/io_states', self.io_state_callback, 10)
         ############### Your Code End Here ###############
 
         # Service clients

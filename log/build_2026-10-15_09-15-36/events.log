@@ -1,0 +1,54 @@
+[0.000000] (-) TimerEvent: {}
+[0.000445] (ece470labs) JobQueued: {'identifier': 'ece470labs', 'dependencies': OrderedDict()}
+[0.001109] (ece470labs) JobStarted: {'identifier': 'ece470labs'}
+[0.099548] (-) TimerEvent: {}
+[0.199922] (-) TimerEvent: {}
+[0.300310] (-) TimerEvent: {}
+[0.400640] (-) TimerEvent: {}
+[0.501029] (-) TimerEvent: {}
+[0.601369] (-) TimerEvent: {}
+[0.701733] (-) TimerEvent: {}
+[0.802299] (-) TimerEvent: {}
+[0.902688] (-) TimerEvent: {}
+[1.003067] (-) TimerEvent: {}
+[1.103487] (-) TimerEvent: {}
+[1.203971] (-) TimerEvent: {}
+[1.304526] (-) TimerEvent: {}
+[1.405202] (-) TimerEvent: {}
+[1.505671] (-) TimerEvent: {}
+[1.577660] (ece470labs) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/ttkim2/ECE470Labs/lab_files/build/ece470labs/build', '--no-deps', 'symlink_data'], 'cwd': '/home/ttkim2/ECE470Labs/lab_files/build/ece470labs', 'env': OrderedDict({'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'LMOD_DIR': '/usr/share/lmod/lmod/libexec', 'USER': 'ttkim2', 'XDG_SESSION_TYPE': 'x11', 'GIT_ASKPASS': '/usr/share/code/resources/app/extensions/git/dist/askpass.sh', 'LMOD_PKG': '/usr/share/lmod/lmod', 'DISTARCH': 'Linux-x86_64', 'CLUTTER_DISABLE_MIPMAPPED_TEXT': '1', 'SHLVL': '1', 'HOME': '/home/ttkim2', 'CHROME_DESKTOP': 'com.microsoft.VSCode.desktop', 'TERM_PROGRAM_VERSION': '1.142.0', 'DESKTOP_SESSION': 'ubuntu', 'LMODARCH': 'x86_64', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/com.microsoft.VSCode.desktop', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'VSCODE_GIT_ASKPASS_MAIN': '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/usr/share/code/code', 'MANAGERPID': '62141', 'PYDEVD_DISABLE_FILE_VALIDATION': '1', 'SYSTEMD_EXEC_PID': '62486', 'BUNDLED_DEBUGPY_PATH': '/home/ttkim2/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/libs/debugpy', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1172866/bus', 'COLORTERM': 'truecolor', 'LMOD_sys': 'Linux', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '64534', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'LOGNAME': 'ttkim2', 'LMOD_VERSION': '8.6.19', 'JOURNAL_STREAM': '8:706854', '_': '/usr/bin/colcon', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1172866.slice/user@1172866.service/session.slice/org.gnome.Shell@x11.service/memory.pressure', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'ttkim2', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'FC_FONTATIONS': '1', 'WINDOWPATH': '3', 'PATH': '/home/ttkim2/.config/Code/User/globalStorage/github.copilot-chat/debugCommand:/home/ttkim2/.config/Code/User/globalStorage/github.copilot-chat/copilotCli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/ttkim2/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts', 'SESSION_MANAGER': 'local/eceb-3071-l02:@/tmp/.ICE-unix/62441,unix/eceb-3071-l02:/tmp/.ICE-unix/62441', 'LMOD_SETTARG_FULL_SUPPORT': 'no', 'INVOCATION_ID': '330565d8d15a49a2a629759965bdfcf5', 'XDG_MENU_PREFIX': 'gnome-', 'XDG_RUNTIME_DIR': '/run/user/1172866', 'DISPLAY': ':2', 'VSCODE_DEBUGPY_ADAPTER_ENDPOINTS': '/home/ttkim2/.vscode/extensions/ms-python.debugpy-2026.6.0-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-0ed6caf206caf8e9.txt', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'PYTHONSTARTUP': '/home/ttkim2/.config/Code/User/workspaceStorage/e43d1061158f532b1f29fc5dfe5270bf/ms-python.python/pythonrc.py', 'LMOD_ROOT': '/usr/share/lmod', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1172866/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1172866/vscode-git-7684489f60.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/run/user/1172866/keyring/ssh', 'SHELL': '/bin/bash', 'KRB5CCNAME': 'FILE:/tmp/krb5cc_1172866_T2aKoV', 'MODULEPATH_ROOT': '/usr/share/modulefiles', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'LMOD_CMD': '/usr/share/lmod/lmod/libexec/lmod', 'GPG_AGENT_INFO': '/run/user/1172866/gnupg/S.gpg-agent:0:1', 'GJS_DEBUG_OUTPUT': 'stderr', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'BASH_ENV': '/usr/share/lmod/lmod/init/bash', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/ttkim2/ECE470Labs/lab_files/build/ece470labs', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'COPILOT_DEBUG_NONCE': 'c13b606cb2029df10784ad521adaefb1', 'SOFTPATH': '/software', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'LMOD_arch': 'x86_64', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'MANPATH': '/usr/share/lmod/lmod/share/man:', 'MODULEPATH': '/usr/share/modulefiles:/usr/share/Modules/modulefiles:/etc/lmod/modules:/usr/share/lmod/lmod/modulefiles/:/etc/modulefiles/env:/etc/modulefiles/class:/etc/modulefiles/ews_software', 'MODULESHOME': '/usr/share/lmod/lmod', 'PYTHONPATH': '/home/ttkim2/ECE470Labs/lab_files/build/ece470labs/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ttkim2/ECE470Labs/lab_files/install/ece470labs/lib/python3.12/site-packages:'}), 'shell': False}
+[1.605783] (-) TimerEvent: {}
+[1.706278] (-) TimerEvent: {}
+[1.806645] (-) TimerEvent: {}
+[1.907047] (-) TimerEvent: {}
+[1.995477] (ece470labs) StdoutLine: {'line': b'running develop\n'}
+[2.007243] (-) TimerEvent: {}
+[2.107641] (-) TimerEvent: {}
+[2.111879] (ece470labs) StdoutLine: {'line': b'running egg_info\n'}
+[2.112267] (ece470labs) StdoutLine: {'line': b'creating ece470labs.egg-info\n'}
+[2.124650] (ece470labs) StdoutLine: {'line': b'writing ece470labs.egg-info/PKG-INFO\n'}
+[2.125342] (ece470labs) StdoutLine: {'line': b'writing dependency_links to ece470labs.egg-info/dependency_links.txt\n'}
+[2.125681] (ece470labs) StdoutLine: {'line': b'writing entry points to ece470labs.egg-info/entry_points.txt\n'}
+[2.125937] (ece470labs) StdoutLine: {'line': b'writing requirements to ece470labs.egg-info/requires.txt\n'}
+[2.126139] (ece470labs) StdoutLine: {'line': b'writing top-level names to ece470labs.egg-info/top_level.txt\n'}
+[2.126248] (ece470labs) StdoutLine: {'line': b"writing manifest file 'ece470labs.egg-info/SOURCES.txt'\n"}
+[2.156145] (ece470labs) StdoutLine: {'line': b"reading manifest file 'ece470labs.egg-info/SOURCES.txt'\n"}
+[2.157033] (ece470labs) StdoutLine: {'line': b"writing manifest file 'ece470labs.egg-info/SOURCES.txt'\n"}
+[2.181411] (ece470labs) StdoutLine: {'line': b'running build_ext\n'}
+[2.182094] (ece470labs) StdoutLine: {'line': b'Creating /home/ttkim2/ECE470Labs/lab_files/install/ece470labs/lib/python3.12/site-packages/ece470labs.egg-link (link to .)\n'}
+[2.182418] (ece470labs) StdoutLine: {'line': b'Installing lab2_exec script to /home/ttkim2/ECE470Labs/lab_files/install/ece470labs/lib/ece470labs\n'}
+[2.182695] (ece470labs) StdoutLine: {'line': b'Installing lab3_exec script to /home/ttkim2/ECE470Labs/lab_files/install/ece470labs/lib/ece470labs\n'}
+[2.183155] (ece470labs) StdoutLine: {'line': b'Installing lab4_exec script to /home/ttkim2/ECE470Labs/lab_files/install/ece470labs/lib/ece470labs\n'}
+[2.183963] (ece470labs) StdoutLine: {'line': b'Installing lab5_exec script to /home/ttkim2/ECE470Labs/lab_files/install/ece470labs/lib/ece470labs\n'}
+[2.184246] (ece470labs) StdoutLine: {'line': b'\n'}
+[2.184410] (ece470labs) StdoutLine: {'line': b'Installed /home/ttkim2/ECE470Labs/lab_files/build/ece470labs\n'}
+[2.184481] (ece470labs) StdoutLine: {'line': b'running symlink_data\n'}
+[2.184531] (ece470labs) StdoutLine: {'line': b'creating /home/ttkim2/ECE470Labs/lab_files/install/ece470labs/share/ament_index\n'}
+[2.184583] (ece470labs) StdoutLine: {'line': b'creating /home/ttkim2/ECE470Labs/lab_files/install/ece470labs/share/ament_index/resource_index\n'}
+[2.184632] (ece470labs) StdoutLine: {'line': b'creating /home/ttkim2/ECE470Labs/lab_files/install/ece470labs/share/ament_index/resource_index/packages\n'}
+[2.184682] (ece470labs) StdoutLine: {'line': b'symbolically linking /home/ttkim2/ECE470Labs/lab_files/build/ece470labs/resource/ece470labs -> /home/ttkim2/ECE470Labs/lab_files/install/ece470labs/share/ament_index/resource_index/packages\n'}
+[2.184733] (ece470labs) StdoutLine: {'line': b'symbolically linking /home/ttkim2/ECE470Labs/lab_files/build/ece470labs/package.xml -> /home/ttkim2/ECE470Labs/lab_files/install/ece470labs/share/ece470labs\n'}
+[2.207786] (-) TimerEvent: {}
+[2.242358] (ece470labs) CommandEnded: {'returncode': 0}
+[2.259363] (ece470labs) JobEnded: {'identifier': 'ece470labs', 'rc': 0}
+[2.261058] (-) EventReactorShutdown: {}
