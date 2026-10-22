@@ -140,6 +140,12 @@ def lab_invk(xWgrip, yWgrip, zWgrip, yaw_WgripDegree):
 	theta1 = np.arctan2(y_cen, x_cen) - np.arcsin(arcsin_)
 	theta6 = np.pi/2 + theta1 - yaw
 
+	# x3end = x_cen + (L6 + 0.027)* np.sin(theta1) - L7 * np.cos(theta1)
+
+	# y3end = y_cen - (L6 + 0.027)* np.cos(theta1) - L7 * np.sin(theta1)
+
+	# z3end = z_cen + L8 + z_E
+
 	translation_cen_to_base = np.array([
 		[np.cos(theta1), -np.sin(theta1), 0, x_cen],
 		[np.sin(theta1), np.cos(theta1)  , 0, y_cen],
@@ -157,10 +163,10 @@ def lab_invk(xWgrip, yWgrip, zWgrip, yaw_WgripDegree):
 	horizontal_distance = np.sqrt(x3end**2 + y3end**2)
 	hypotenuse = np.sqrt(horizontal_distance**2 + (z3end - L1)**2)
 
-	theta2 = -(np.arctan2(z3end - L1, horizontal_distance) - np.arccos((L3**2 + hypotenuse**2 - L5**2) / (2 * L3 * hypotenuse)))
+	theta2 = - (np.arctan2(z3end - L1, horizontal_distance) + np.arccos((L3**2 + hypotenuse**2 - L5**2) / (2 * L3 * hypotenuse)))
 	theta3 = np.pi - np.arccos((L3**2 + L5**2 - hypotenuse**2) / (2 * L3 * L5))
 
-	theta4 = theta2 - theta3
+	theta4 = (-theta2 - theta3)
 	theta5 = -np.pi/2
 	
 	# ==============================================================#
