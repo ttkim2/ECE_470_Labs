@@ -2,18 +2,41 @@
 
 import cv2
 import numpy as np
+import math
 
 # ========================= Student's code starts here =========================
 
 # Params for camera calibration
-theta = 0.0
-beta = 0.0
-tx = 0.0
-ty = 0.0
+theta = math.atan2(-5,180)
+beta = 665
+o_r = 240
+o_c = 320
+tx = (309-o_r)/beta
+ty = (145-o_c)/beta
+
+#309, 145   
+#489.140
 
 # Function that converts image coord to world coord
 def IMG2W(col, row):
-    pass
+
+    #intrinsic
+    x_c = (row-o_r)/beta
+    y_c = (col-o_c)/beta
+
+    #extrinsic
+
+    cam = np.array([[x_c], [y_c]])
+    t = np.array([[tx], [ty]])
+    R = np.array(
+                [np.cos(theta), -np.sin(theta)],
+                [np.sin(theta), np.cos(theta)]
+    )
+    world = cam @ R + t
+    x_w = world[0]
+    y_w = world[1]
+    return x_w, y_w
+
 
 # ========================= Student's code ends here ===========================
 
@@ -23,21 +46,28 @@ def blob_search(image_raw, color):
     params = cv2.SimpleBlobDetector_Params()
 
     # ========================= Student's code starts here =========================
-
+    
+    # Threshold
     # Filter by Color
     params.filterByColor = False
 
     # Filter by Area.
-    params.filterByArea = False
+    params.filterByArea = True
+    params.minArea = 200 # Change to 200 for Orange
 
     # Filter by Circularity
     params.filterByCircularity = False
+    params.minCircularity = 0.75
+    params.maxCircularity = 0.8
 
     # Filter by Inerita
-    params.filterByInertia = False
+    params.filterByInertia = True
+    params.minInertiaRatio = 0.5
+    params.maxInertiaRatio = 1.0
 
     # Filter by Convexity
     params.filterByConvexity = False
+    params.minConvexity = 0.5
 
     # ========================= Student's code ends here ===========================
 
@@ -49,8 +79,12 @@ def blob_search(image_raw, color):
 
     # ========================= Student's code starts here =========================
 
-    lower = (110,50,50)     # blue lower
-    upper = (130,255,255)   # blue upper
+    # lower = (110,50,50)     # blue lower
+    # upper = (130,255,255)   # blue upper
+    # lower = (40,50,50)     # green lower
+    # upper = (70,255,255)   # green upper
+    lower = (5,50,50)     # orange lower
+    upper = (15,255,255)   # orange upper
 
     # Define a mask using the lower and upper bounds of the target color
     mask_image = cv2.inRange(hsv_image, lower, upper)
@@ -68,8 +102,12 @@ def blob_search(image_raw, color):
     # ========================= Student's code starts here =========================
 
     # Draw the keypoints on the detected block
-    # im_with_keypoints = cv2.drawKeypoints(image_raw, keypoints, ???)
-
+    im_with_keypoints = cv2.drawKeypoints(image_raw, keypoints, outImage=None, flags=cv2.DRAW_MATCHES_FLAGS_DEFAULT)
+    if len(blob_image_center) > 0:
+        r = blob_image_center[0][0]
+        c = blob_image_center[0][1]
+        IMG2W(r,c)
+    
     # ========================= Student's code ends here ===========================
 
     xw_yw = []
@@ -86,8 +124,8 @@ def blob_search(image_raw, color):
     cv2.imshow("Camera View", image_raw)
     cv2.namedWindow("Mask View")
     cv2.imshow("Mask View", mask_image)
-    # cv2.namedWindow("Keypoint View")
-    # cv2.imshow("Keypoint View", im_with_keypoints)
+    cv2.namedWindow("Keypoint View")
+    cv2.imshow("Keypoint View", im_with_keypoints)
 
     cv2.waitKey(2)
 
