@@ -55,8 +55,8 @@ class UR3e(Node):
         self.image_count = 0
         # store world coordinates for blocks (same idea as xw_yw_G, xw_yw_Y in lab5)
         self.green_blocks = []   # list of (x, y) or (x, y, z)
-        self.yellow_blocks = []  # adjust to your needs
-
+        self.orange_blocks = []  # adjust to your needs
+        self.blue_blocks = []    # adjust to your needs
 
         # State variables
         self.current_joint_state = None
@@ -99,9 +99,9 @@ class UR3e(Node):
 
         # Use your existing blob_search to detect block centers in world frame
         self.green_blocks = blob_search(cv_image, "green")
-        self.yellow_blocks = blob_search(cv_image, "yellow")
-
-
+        self.orange_blocks = blob_search(cv_image, "orange")
+        self.blue_blocks = blob_search(cv_image, "blue")
+        
 
     def set_io(self, pin, state):
         req = SetIO.Request()
@@ -188,7 +188,30 @@ class UR3e(Node):
         Hint: You can use your existing lab_invk, move_arm and set_io to pick and place a block.
         """
         # ========================= Student's code starts here =========================
-        pass
+        error = 0
+        self.move_arm(np.radians([185, -63, 76, -105, -88, 2])) # Move to a safe position before moving to target
+        self.move_arm(lab_invk(start_xy[0], start_xy[1], np.abs(0.024-0.007), 0.0))
+        time.sleep(0.5)
+        self.set_io(0, 1.0)  # Turn on suction
+
+        start_time = time.time()
+        while time.time() - start_time < 1:
+            rclpy.spin_once(self, timeout_sec=0.1)
+
+        if (self.analog_in_0_value < 2):
+            error = 1
+            print("Error: Suction cup did not pick up the block.")
+            self.set_io(0, 0.0)  # Turn off suction
+            sys.exit()
+
+        time.sleep(0.5)
+        self.move_arm(np.radians([185, -63, 76, -105, -88, 2])) # Move to a safe position before moving to target
+        time.sleep(0.5)
+        self.move_arm(lab_invk(target_xyz[0], target_xyz[1], target_xyz[2], 0.0))
+        time.sleep(0.5)
+        self.set_io(0, 0.0)  # Turn off suction
+        time.sleep(0.5)
+        return error
         # ========================= Student's code ends here =========================
 
 
@@ -220,7 +243,8 @@ def main(args=None):
         # Snapshot once 
         green_snapshot = list(node.green_blocks)
         node.get_logger().info(f"Snapshot green blocks: {green_snapshot}")
-
+        orange_snapshot = list(node.orange_blocks)
+        node.get_logger().info(f"Snapshot orange blocks: {orange_snapshot}")
         # Execute task once based on snapshot
         # ========================= Student's code starts here =========================
 
@@ -231,6 +255,24 @@ def main(args=None):
         the block you want to move, and target_xyz is the world coordinate of where you want to place it 
         (you can set z based on your needs).
         """
+        x_green = float(input("Enter X Green Position: "))
+        y_green = float(input("Enter Y Green Position: "))
+        x_orange = float(input("Enter X Orange Position: "))
+        y_orange = float(input("Enter Y Orange Position: "))
+        block_height = 0.024 - 0.007
+        z = block_height - 0.01
+
+        while len(green_snapshot) > 0:
+            i = 0
+            node.move_block_vision(IMG2W(green_snapshot[0][0], green_snapshot[0][1]), [x_green, y_green, z + block_height*i])  # Move first green block to a target position
+            green_snapshot.pop(0)
+            i += 1
+
+        while len(orange_snapshot) > 0:
+            i = 0
+            node.move_block_vision(IMG2W(orange_snapshot[0][0], orange_snapshot[0][1]), [x_orange, y_orange, z + block_height*i])  # Move first orange block to a target position
+            orange_snapshot.pop(0)
+            i += 1
 
         # ========================= Student's code ends here ===========================
 

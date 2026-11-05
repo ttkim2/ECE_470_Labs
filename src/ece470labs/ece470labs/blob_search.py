@@ -26,15 +26,15 @@ def IMG2W(col, row):
 
     #extrinsic
 
-    cam = np.array([[x_c], [y_c]])
+    cam = np.vstack([x_c, y_c])
     t = np.array([[tx], [ty]])
-    R = np.array(
+    R = np.array([
                 [np.cos(theta), -np.sin(theta)],
                 [np.sin(theta), np.cos(theta)]
-    )
-    world = cam @ R + t
-    x_w = world[0]
-    y_w = world[1]
+    ])
+    world = R @ cam + t
+    x_w = world[0][0]
+    y_w = world[1][0]
     return x_w, y_w
 
 
@@ -78,13 +78,15 @@ def blob_search(image_raw, color):
     hsv_image = cv2.cvtColor(image_raw, cv2.COLOR_BGR2HSV)
 
     # ========================= Student's code starts here =========================
-
-    # lower = (110,50,50)     # blue lower
-    # upper = (130,255,255)   # blue upper
-    # lower = (40,50,50)     # green lower
-    # upper = (70,255,255)   # green upper
-    lower = (5,50,50)     # orange lower
-    upper = (15,255,255)   # orange upper
+    if (color == "blue"):
+        lower = (110,50,50)     # blue lower
+        upper = (130,255,255)   # blue upper
+    elif (color == "green"):
+        lower = (40,50,50)     # green lower
+        upper = (70,255,255)   # green upper
+    elif (color == "orange"):
+        lower = (5,50,50)     # orange lower
+        upper = (15,255,255)   # orange upper
 
     # Define a mask using the lower and upper bounds of the target color
     mask_image = cv2.inRange(hsv_image, lower, upper)
